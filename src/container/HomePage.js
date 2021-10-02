@@ -6,7 +6,7 @@ import Search from "./header/Search";
 import Home from "../component/Home/Home";
 const { Footer, Content } = Layout;
 
-function HomePage(props) {
+function HomePage() {
   return (
     <Layout>
       <HeaderPage className ="headerPage"/>
