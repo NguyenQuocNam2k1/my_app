@@ -1,0 +1,53 @@
+.slide_home_page{
+    max-width: 80%;
+    margin: auto;
+}
+/* .slide_home_page{} */
+.slide_home{
+    background-color: #ffffff;
+}
+.image_slide{
+    max-width: 100%;
+    height: 100%;
+}
+
+.section-title-box{
+    height: 35px;
+    border-bottom: 1px solid #eaeaea;
+    margin-bottom: 0.5rem;
+}
+
+.featured_products_text{
+    font-size: 2em;
+    margin-bottom: 0;;
+    text-align: center;
+    margin-top: 5rem;
+    font-weight: 100;
+}
+
+/* Banner */
+.bannerBig{
+    animation: animationBannerBig 1s ease;
+    z-index: -1;
+}
+@keyframes animationBannerBig {
+    from{
+        margin-top: -100%;
+    }
+    to{
+        margin-top: 0%;
+    }
+}
+
+.bannerSmall{
+    animation: animationBannerSmall 1s ease;
+}
+@keyframes animationBannerSmall {
+    from{
+        margin-top: 100%;
+    }
+    to{
+        margin-top: 0%;
+    }
+}
+
