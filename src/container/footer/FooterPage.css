@@ -1,0 +1,42 @@
+.FooterPage{
+    color:#FFFFFF;
+    width:80%;
+    margin:auto;
+}
+/* 
+.store-footer{
+    position: absolute;
+    top: 45%;
+    left: 0;
+    right: 0;
+    text-align: center;
+} */
+
+/* .store-footer_span{
+    border: 3px solid #fff;
+    padding: 10px 50px;
+    font-size: 20pt;
+    color: #000;
+    display: inline-block;
+    background-color: #ef9608;
+    opacity: .7;
+    text-transform: uppercase;
+} */
+
+.link_email_footer{
+    color: rgb(216, 216, 216);
+    text-decoration: none;
+    font-family: sans-serif;
+}
+.link_email_footer:hover{
+    color:#6b6b6b;
+}
+.list_footer{
+    list-style: none;
+    font-size: 0.7rem;
+    margin: 3px 0;
+}
+.list_footer:hover{
+    cursor: pointer;
+    color:#807f7f
+}

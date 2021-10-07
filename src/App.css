@@ -2,10 +2,7 @@
 
 .App{
   width: 100%;
-  min-height: 1440px;
-  background-color: #ffffff;
   font-family: 'Raleway', sans-serif;
+  
 }
-.headerPage{
-  background-color: #ffffff;
-}
+

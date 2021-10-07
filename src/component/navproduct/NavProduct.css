@@ -1,0 +1,19 @@
+.tree_node{
+    width: 100%;
+}
+.nav_product{
+    display: flex;
+    justify-content: space-between;
+    width: 98%;
+}
+.layout_product{
+    display: flex;
+}
+.icon_layout_product{
+    cursor: pointer;
+}
+.line{
+    height: 100%;
+    width: 100%;
+    border-bottom: 1px solid #c7d3d6;
+}
