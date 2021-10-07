@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { Col, Row } from "antd";
 import { useSelector } from "react-redux";
-import { Pagination } from "antd";
+
 
 function ListProduct() {
   const getAllProduct = useSelector((state) => state.allProduct.products);
@@ -37,7 +37,6 @@ function ListProduct() {
   return (
     <Row>
       {renderListProduct}
-      <Pagination size='small' total={50} defaultPageSize="10" size="large" style={{margin: "auto"}}/>
     </Row>
   );
 }

@@ -113,12 +113,28 @@
     height:100%;
     padding:2rem;
 }
+.product:hover{
+    cursor: pointer;
+    /* background-color: #b3b3b3; */
+    /* animation: animationProduct 1s ease; */
+}
+/* @keyframes animationProduct{
+    from{
+        margin-top: 0;
+    }
+    to{
+        margin-top: -1rem;
+    }
+} */
+
+
 .text_product{
     font-size: 1.1rem;
     font-weight: 900;
     font-family: unset;
     width: 80%;
     margin: auto;
+    padding-top: 1rem;
     overflow: hidden;
     text-align: center;
     white-space: pre-wrap; 
@@ -138,9 +154,10 @@
     display: flex;
     font-size: 1rem;
     justify-content: space-between;
-    width: 60%;
+    width: 80%;
     margin: auto;
     font-family: cursive;
+    padding-top: 0.5rem;
 }
 .item__product__sale-off {
     position: absolute;
@@ -178,4 +195,9 @@
     color: white;
     position: relative;
     top: 2px;
+}
+
+
+.icon_layout:hover{
+    cursor: pointer;
 }

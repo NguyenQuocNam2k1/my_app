@@ -1,80 +1,75 @@
-.header{
-    padding:1rem 0 5rem 0;
-    background-color: #ffffff;
-    height: 7rem;
-    display:flex;
-    justify-content: space-evenly;
+.header {
+  padding: 1rem 0 5rem 0;
+  background-color: #ffffff;
+  height: 7rem;
+  display: flex;
+  justify-content: space-evenly;
 }
-.header_scroll{
-    padding:1rem 0 5rem 0;
-    background-color: #bfcdd0;
-    height: 7rem;
-    display:flex;
-    justify-content: space-evenly;
-    animation: animationHeader 1s ease;
+.header_scroll {
+  padding: 1rem 0 5rem 0;
+  background-color: #bfcdd0;
+  height: 7rem;
+  display: flex;
+  justify-content: space-evenly;
+  animation: animationHeader 1s ease;
 }
 
 @keyframes animationHeader {
-    from{
-        
-        opacity: 0;
-    }
-    to{
-       
-        opacity: 1;
-    }
+  from {
+    margin-top: -10%;
+    opacity: 0;
+  }
+  to {
+    margin-top: 0;
+    opacity: 1;
+  }
 }
 
-
-
-.menu_item{
-    border:none;
-    width: 350px;
-    font-size: 1rem;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    display: inline;
+.menu_item {
+  border: none;
+  width: 350px;
+  font-size: 1rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  display: block;
 }
-.menu_item_scroll{
-    border:none;
-    width: 350px;
-    font-size: 1rem;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    display: inline;
-    background-color: #bfcdd0;
+.menu_item_scroll {
+  border: none;
+  width: 350px;
+  font-size: 1rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  display: inline;
+  background-color: #bfcdd0;
 }
-.menu_item_child:hover{
-    cursor: pointer;
-    color: #bfcdd0;
+.menu_item_child:hover {
+  cursor: pointer;
+  color: #bfcdd0;
 }
 
-
-
-
-.input_search_header{
-    border:none;
-    border-bottom: solid 1px black;
-    /* max-width: 60%; */
-    padding: auto;
+.input_search_header {
+  border: none;
+  border-bottom: solid 1px black;
+  /* max-width: 60%; */
+  padding: auto;
 }
-.input_search_header:hover{
-    color: none !important;
+.input_search_header:hover {
+  color: none !important;
 }
 
-.link_page{
-    color: black;
-    margin-right:3.5rem;
+.link_page {
+  color: black;
+  margin-right: 3.5rem;
 }
-.link_page:hover{
-    color: #bfcdd0;
+.link_page:hover {
+  color: #bfcdd0;
 }
-.icon_header{
-    width: 1.8rem;
+.icon_header {
+  width: 1.8rem;
 }
 
-.link_page_scroll{
-    color: black;
-    margin-right:3.5rem;
+.link_page_scroll {
+  color: black;
+  margin-right: 3.5rem;
 }
-.link_page_scroll:hover{
-    color: #e7eaeb;
+.link_page_scroll:hover {
+  color: #e7eaeb;
 }

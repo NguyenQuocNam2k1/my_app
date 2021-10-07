@@ -1,0 +1,20 @@
+.title_page{
+    text-align: center;
+    width: 100% ;
+    margin-top: 1.5rem ;
+    font-size: 1.2rem ;
+    color: #ab9fab ;
+    font-family: cursive;
+}
+.title_page::before{
+    border-bottom:1px solid black;
+}
+.title_main{
+    text-align: center;
+    width: 100%;
+    font-size: 3.5rem;
+    color: #bfcdd0;
+    font-weight: 600;
+    font-family: cursive;
+    margin-bottom: 3rem;
+}

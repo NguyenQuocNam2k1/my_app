@@ -1,4 +1,4 @@
-import React, { useEffect , useState } from "react";
+import React, { useEffect } from "react";
 import HeaderPage from "./header/HeaderPage";
 import { Layout, BackTop } from "antd";
 import Home from "../component/Home/Home";
@@ -7,9 +7,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllProduct } from "../redux/actions/productAction";
 import Loading from "./loading/Loading";
 import FooterPage from "./footer/FooterPage";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route  } from "react-router-dom";
 import { UpOutlined } from "@ant-design/icons";
-import NotFound from "./NotFound"
+import NotFound from "./NotFound";
+import Men from "../component/Men/Men";
+import Women from "../component/Women/Women";
+import ProductDetail from "../component/Home/ProductDetail";
+// import CarDetail from "../component/Home/CarDetail";
+
+
 const { Footer, Content } = Layout;
 
 function HomePage() {
@@ -24,7 +30,6 @@ function HomePage() {
     fontSize: 14,
   };
 
-
   useEffect(() => {
     dispatch(getAllProduct());
   }, []);
@@ -35,23 +40,27 @@ function HomePage() {
         <Loading />
       ) : (
         <Router>
-          <Layout style={{backgroundColor:"white"}}>
+          <Layout style={{ backgroundColor: "white" }}>
             <BackTop style={{ right: "3rem" }}>
               <div style={style}>
-                <UpOutlined style={{color:"white" , fontSize:"1.2rem"}} />
+                <UpOutlined style={{ color: "white", fontSize: "1.2rem" }} />
               </div>
             </BackTop>
-            <HeaderPage className='headerPage'/>
-            <Content>
+            <HeaderPage className='headerPage' />
+            <Content style={{ paddingBottom: "3rem" }}>
               <Switch>
                 <Route path='/' exact component={Home} />
-                {/* <Route path="/man" exact component={Home} />
-                <Route path="/women" exact component={Home} /> */}
-                <Route path='/kid' exact component={Kid} />
-                <Route> <NotFound /> </Route>
+                <Route path="/men"  component={Men} />
+                <Route path="/women"  component={Women} />
+                <Route path='/kid'  component={Kid} />
+                <Route path="/product/:productId" component={ProductDetail} />
+                <Route>
+                  {" "}
+                  <NotFound />{" "}
+                </Route>
               </Switch>
             </Content>
-            <Footer style={{ backgroundColor: "#000", marginTop: "4.5rem" }}>
+            <Footer style={{ backgroundColor: "#000" }}>
               <FooterPage />
             </Footer>
           </Layout>

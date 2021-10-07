@@ -1,11 +1,11 @@
 import React,  { useState } from "react";
-import { Carousel } from "antd";
+import { Carousel, Pagination } from "antd";
 import slide1 from "../../image/slide1.jpg";
 import slide2 from "../../image/slide2.jpg";
 import slide4 from "../../image/slide4.png";
 import "./Home.css";
-import iconLayout1 from "../../icon/icon_layout1.png";
-import iconLayout2 from "../../icon/icon_layout2.png";
+import iconLayout1 from "../../icon/layout1.svg";
+import iconLayout2 from "../../icon/layout2.svg";
 import CardHome from "./CardHome";
 import ListProduct from "./ListProduct";
 
@@ -37,9 +37,10 @@ function Home() {
               <div style={{ display: "flex", marginTop: "2.4rem" }}>
                 <img
                   src={iconLayout1}
+                  className="icon_layout"
                   style={{
                     width: "2rem",
-                    marginRight: "0.5rem",
+                    marginRight: "1.5rem",
                     height: "2rem",
                   }}
                   alt="image_home"
@@ -47,7 +48,8 @@ function Home() {
                 <img
                   src={iconLayout2}
                   alt="image_home"
-                  style={{ width: "2rem", marginRight: "1rem", height: "2rem" }}
+                  className="icon_layout"
+                  style={{ width: "2rem", height: "3rem" , marginTop:"-0.5rem" }}
                 />
               </div>
             </div>
@@ -55,6 +57,13 @@ function Home() {
           </div>
           <div>
             <ListProduct />
+            <Pagination
+                size='small'
+                total={50}
+                defaultPageSize='10'
+                size='large'
+                style={{ textAlign : "center"}}
+              />
           </div>
         </div>
       </div>

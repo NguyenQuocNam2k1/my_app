@@ -4,6 +4,7 @@ import { Layout, Affix } from "antd";
 import "./Header.css";
 import logo from "../../image/WOW_logo_white.png";
 import user from "../../icon/user.svg";
+import cart from "../../icon/cart.svg";
 import Search from "./Search";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 const { Header } = Layout;
@@ -23,7 +24,7 @@ function HeaderPage() {
           <Link to='/women' className={scrolled > 10 ? "link_page_scroll" : "link_page"}>
             WOMEN
           </Link>
-          <Link to='/man' className={scrolled > 10 ? "link_page_scroll" : "link_page"}>
+          <Link to='/men' className={scrolled > 10 ? "link_page_scroll" : "link_page"}>
             MEM
           </Link>
           <Link to='/kid' className={scrolled > 10 ? "link_page_scroll" : "link_page"}>
@@ -36,12 +37,15 @@ function HeaderPage() {
           </Link>
         </div>
         <Menu mode='horizontal' className={scrolled > 10 ? "menu_item_scroll list_icon" : "menu_item list_icon"}>
-          <div style={{ textAlign: "center" }}>
+          <div style={{ float: "right" }}>
             <Link to='/kid' className={scrolled > 10 ? "link_page_scroll" : "link_page"}>
               CONTACT US
             </Link>
-            <Link to='log_in' className={scrolled > 10 ? "link_page_scroll" : "link_page"}>
+            <Link to='Login'  className={scrolled > 10 ? "link_page_scroll" : "link_page"}>
               <img src={user} alt='logo' className='icon_header' />
+            </Link>
+            <Link to='myCart' style={{marginRight:0}} className={scrolled > 10 ? "link_page_scroll" : "link_page"}>
+              <img src={cart} alt='logo' className='icon_header' />
             </Link>
           </div>
         </Menu>
