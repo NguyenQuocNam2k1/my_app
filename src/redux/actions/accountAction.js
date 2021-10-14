@@ -2,7 +2,7 @@ import { AccountTypes } from "../contants/action-types";
 
 
 export const registerAccount = (userName , email , password) => async (dispatch) => {
-  dispatch({ type: AccountTypes.REGISTER_ACCOUNT, payload: {userName: userName , uerEmail : email , password : password} });
+  dispatch({ type: AccountTypes.REGISTER_ACCOUNT, payload: {userName: userName , userEmail : email , password : password} });
 };
 
 export const logIn = (userName, password) => async(dispatch) =>{

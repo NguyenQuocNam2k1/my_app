@@ -7,11 +7,13 @@ import { getProduct } from "../../redux/actions/productAction";
 import Loading from "../../container/loading/Loading";
 import { Button, InputNumber } from "antd";
 import error  from "../notification/Error";
+import Warning from "../notification/Warning";
 
 function ProductDetail() {
   const { productId } = useParams();
   const product = useSelector((state) => state.allProduct.product);
   const singIn = useSelector((state) => state.accounts.singIn);
+  console.log(singIn)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProduct(productId));
@@ -21,8 +23,10 @@ function ProductDetail() {
     console.log("changed", value);
   };
   const showMessage = () => {
-    if(!singIn){
-      error("You need to login to make a purchase!")
+    if(singIn == 0){ 
+      error("You need to login to make a purchase 😭")
+    } else if(singIn === 2){
+      Warning("You need to login to make a purchase 😭")
     }
   };
 
@@ -79,7 +83,7 @@ function ProductDetail() {
                   <Col span='12'>
                     <button
                       className='button_purchase button_purchase_add'
-                      onClick={() => showMessage()}
+                      // onClick={() => showMessage()}
                     >
                       ADD TO CART
                     </button>

@@ -16,7 +16,7 @@ export const accountUser = (state = initialState, { type, payload }) => {
       let statusSingIn = ""; 
       const userAccount = JSON.parse(localStorage.getItem('usersAccount'));
       userAccount.forEach((account) => {
-        if(name === account.userName && password === account.password){
+        if(name === account.userName || name === account.userEmail && password === account.password){
             statusSingIn = 1
         } else{
             statusSingIn = 0

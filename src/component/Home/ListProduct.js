@@ -1,44 +1,50 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Col, Row } from "antd";
 import { useSelector } from "react-redux";
-
 
 function ListProduct() {
   const getAllProduct = useSelector((state) => state.allProduct.products);
   const renderListProduct = getAllProduct.map((product) => {
     const { id, title, image, price } = product;
+    let price_old = parseFloat(price).toFixed(2);
+    let price_new = parseFloat(price - 0.2 * price).toFixed(2);
+    let price_sale = (((price_old - price_new) / price_old)*100).toFixed(0)
     return (
       <Col span='6' id={id}>
-        <div className='product'>
-          <img
-            src={image}
-            alt="image_product"
-            style={{ width: "100%", height: "70%", padding: "auto" }}
-            className='image_product'
-          />
-          <p className='text_product'>{title}</p>
-          <div className='item__product-price'>
-            <div style={{ color: "#939393", textDecoration: "line-through" }}>
-              {parseFloat(price).toFixed(2)}$
+        <div className='product_list'>
+          <div className='product_list_child'>
+            <div className='image_product_big'>
+              <img
+                src={image}
+                alt='image_product'
+                style={{ width: "100%", height: "100%" }}
+              />
             </div>
-            <div
-              style={{ color: "rgb(226, 45, 45)", textDecoration: "underline" }}
-            >
-              {parseFloat(price - 0.6 * price).toFixed(2)}$
+            <p className='text_product'>{title}</p>
+            <div className='item__product-price'>
+              <div style={{ color: "#939393", textDecoration: "line-through" }}>
+                {price_old}$
+              </div>
+              <div
+                style={{
+                  color: "rgb(226, 45, 45)",
+                  textDecoration: "underline",
+                }}
+              >
+                {price_new}$
+              </div>
             </div>
-          </div>
-          <div className='item__product__sale-off'>
-            <span className='item__product__sale-off-percent'>10%</span>
+            <div className='item__product__sale-off'>
+              <p className="item__product__sale-off-text"> Sale</p>
+              <span className='item__product__sale-off-percent'>{price_sale}%</span>
+            </div>
           </div>
         </div>
       </Col>
     );
   });
-  return (
-    <Row>
-      {renderListProduct}
-    </Row>
-  );
+  return <Row justify="center">
+    {renderListProduct}</Row>;
 }
 
 export default ListProduct;
