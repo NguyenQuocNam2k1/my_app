@@ -6,9 +6,7 @@
     color: #ab9fab ;
     font-family: cursive;
 }
-.title_page::before{
-    border-bottom:1px solid black;
-}
+
 .title_main{
     text-align: center;
     width: 100%;

@@ -41,10 +41,10 @@ function HeaderPage() {
             <Link to='/kid' className={scrolled > 10 ? "link_page_scroll" : "link_page"}>
               CONTACT US
             </Link>
-            <Link to='Login'  className={scrolled > 10 ? "link_page_scroll" : "link_page"}>
+            <Link to='/logIn'  className={scrolled > 10 ? "link_page_scroll" : "link_page"}>
               <img src={user} alt='logo' className='icon_header' />
             </Link>
-            <Link to='myCart' style={{marginRight:0}} className={scrolled > 10 ? "link_page_scroll" : "link_page"}>
+            <Link to='/myCar' style={{marginRight:0}} className={scrolled > 10 ? "link_page_scroll" : "link_page"}>
               <img src={cart} alt='logo' className='icon_header' />
             </Link>
           </div>

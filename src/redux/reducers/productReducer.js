@@ -2,7 +2,8 @@ import { ActionTypes } from "../contants/action-types";
 
 const initialState = {
     products: [],
-    layout: 4
+    layout: 4,
+    product:{},
 }
 
 export const getAllProductReducer = (state = initialState, {type, payload}) =>{
@@ -13,6 +14,8 @@ export const getAllProductReducer = (state = initialState, {type, payload}) =>{
             return{...state , layout: 2}
         case ActionTypes.ON_CHANGE_LAYOUT4:
             return{...state , layout: 4}
+        case ActionTypes.GET_PRODUCT:
+            return {...state , product:payload}
         default:
             return state;
     }

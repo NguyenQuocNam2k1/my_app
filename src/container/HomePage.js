@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect , useState } from "react";
 import HeaderPage from "./header/HeaderPage";
 import { Layout, BackTop } from "antd";
 import Home from "../component/Home/Home";
@@ -13,13 +13,19 @@ import NotFound from "./NotFound";
 import Men from "../component/Men/Men";
 import Women from "../component/Women/Women";
 import ProductDetail from "../component/Home/ProductDetail";
-// import CarDetail from "../component/Home/CarDetail";
+import IndexLogin from "../component/Login/Index";
+import Purchase from "../component/purchase/Purchase";
 
 
 const { Footer, Content } = Layout;
 
 function HomePage() {
   const dispatch = useDispatch();
+  const [windowHeight, setWindowHeight] = useState();
+  useEffect(() => {
+    setWindowHeight(window.screen.height / 2);
+  }, [window.screen.height]);
+  
   const style = {
     height: "4rem",
     width: "4rem",
@@ -47,16 +53,17 @@ function HomePage() {
               </div>
             </BackTop>
             <HeaderPage className='headerPage' />
-            <Content style={{ paddingBottom: "3rem" }}>
+            <Content style={{ paddingBottom: "3rem" , minHeight:windowHeight}}>
               <Switch>
                 <Route path='/' exact component={Home} />
                 <Route path="/men"  component={Men} />
                 <Route path="/women"  component={Women} />
                 <Route path='/kid'  component={Kid} />
+                <Route path="/logIn" component={IndexLogin} />
+                <Route path="/myCar" component={Purchase} />
                 <Route path="/product/:productId" component={ProductDetail} />
                 <Route>
-                  {" "}
-                  <NotFound />{" "}
+                  <NotFound />
                 </Route>
               </Switch>
             </Content>
