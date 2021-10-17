@@ -8,6 +8,7 @@ function Error(props) {
     });
     notification.error({
       description: value,
+      duration: 2
     });
   };
   return <>{error(props)}</>;

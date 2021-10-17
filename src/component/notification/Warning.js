@@ -8,6 +8,7 @@ function Warning(props) {
       });
       notification.warning({
         description: value,
+        duration: 2
       });
   };
   return <>{warning(props)}</>;

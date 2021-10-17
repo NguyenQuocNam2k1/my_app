@@ -1,6 +1,6 @@
 .header {
   padding: 1rem 0 5rem 0;
-  background-color: #ffffff;
+  background-color: #f2f2f2;
   height: 7rem;
   display: flex;
   justify-content: space-evenly;
@@ -31,6 +31,7 @@
   font-size: 1rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   display: block;
+  background-color: #f2f2f2;
 }
 .menu_item_scroll {
   border: none;

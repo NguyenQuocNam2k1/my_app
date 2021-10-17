@@ -156,6 +156,10 @@ label {
   float: right;
   width: 21%;
   text-align: right;
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-family: auto;
+
 }
 .totals .totals-item-total {
   font-family: "HelveticaNeue-Medium", "Helvetica Neue Medium";

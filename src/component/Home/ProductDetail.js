@@ -3,31 +3,68 @@ import { Col, Row } from "antd";
 import "./Home.css";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getProduct } from "../../redux/actions/productAction";
+import {
+  getProduct,
+  addOrder,
+  restartStatusOrder,
+} from "../../redux/actions/productAction";
 import Loading from "../../container/loading/Loading";
 import { Button, InputNumber } from "antd";
-import error  from "../notification/Error";
+import error from "../notification/Error";
 import Warning from "../notification/Warning";
+import Success from "../notification/Success";
 
 function ProductDetail() {
   const { productId } = useParams();
   const product = useSelector((state) => state.allProduct.product);
-  const singIn = useSelector((state) => state.accounts.singIn);
-  console.log(singIn)
+  const statusOrder = useSelector((state) => state.allProduct.statusAddOrder);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProduct(productId));
   }, [productId]);
 
+  useEffect(() => {
+    if (statusOrder !== 0) {
+      Success("Add order success ✔️");
+      setTimeout(() => {
+        dispatch(restartStatusOrder());
+      }, [500]);
+    }
+  }, [statusOrder !== 0 && statusOrder !== "undefined"]);
+
   const onChange = (value) => {
-    console.log("changed", value);
+    product["orderQuantity"] = value;
   };
   const showMessage = () => {
-    if(singIn == 0){ 
-      error("You need to login to make a purchase 😭")
-    } else if(singIn === 2){
-      Warning("You need to login to make a purchase 😭")
+    const {status} = JSON.parse(localStorage.getItem("statusLogin"));
+    if (!status) {
+      error("You need to login to make a purchase 😭");
     }
+  };
+  const onClickSize = (value) => {
+    // console.log(value.textContent)
+    // Cần có textContent bởi vì khi click vào button nó sẽ trả về 2 trường hợp 1 là trả về cả button , 2 là trả về nguyên thẻ p
+    // Nên cần có textContent để lấy string trong thẻ trả về
+    product["orderSize"] = value.textContent;
+  };
+
+  const onClickAddOrder = () => {
+    const {status , idUser} = JSON.parse(localStorage.getItem("statusLogin"));
+    product["idUser"] = idUser;
+    if (!status) {
+      error("You need to login to make a purchase 😭");
+    } else if (product.orderSize === undefined || product.orderSize === "") {
+      Warning("Product size is not suitable ⚠️");
+    } else if (product.orderQuantity == undefined) {
+      product["orderQuantity"] = 1;
+      dispatch(addOrder(product));
+    } else {
+      dispatch(addOrder(product ));
+    }
+    setTimeout(()=>{
+      product["orderSize"] = "";
+    }, 200)
   };
 
   return (
@@ -57,13 +94,21 @@ function ProductDetail() {
               <Row className='quantity_size' justify='space-between'>
                 <Col>
                   <p className='text_quantity_size'>Select size</p>
-                  <Button style={{ marginRight: "0.5rem" }}>
+                  <Button
+                    style={{ marginRight: "0.5rem" }}
+                    onClick={(event) => onClickSize(event.target)}
+                    className="button_size"
+                  >
                     <p style={{ color: "black", fontWeight: "500" }}>S</p>
                   </Button>
-                  <Button style={{ marginRight: "0.5rem" }}>
+                  <Button
+                    style={{ marginRight: "0.5rem" }}
+                    onClick={(event) => onClickSize(event.target)}
+                    className="button_size"
+                  >
                     <p style={{ color: "black", fontWeight: "500" }}>M</p>
                   </Button>
-                  <Button>
+                  <Button onClick={(event) => onClickSize(event.target)} className="button_size">
                     <p style={{ color: "black", fontWeight: "500" }}>L</p>
                   </Button>
                 </Col>
@@ -83,14 +128,16 @@ function ProductDetail() {
                   <Col span='12'>
                     <button
                       className='button_purchase button_purchase_add'
-                      // onClick={() => showMessage()}
+                      onClick={() => onClickAddOrder()}
                     >
                       ADD TO CART
                     </button>
                   </Col>
                   <Col span='12'>
-                    <button className='button_purchase button_purchase_buy'
-                    onClick={() => showMessage()}>
+                    <button
+                      className='button_purchase button_purchase_buy'
+                      onClick={() => showMessage()}
+                    >
                       BUY NOW
                     </button>
                   </Col>
@@ -102,13 +149,13 @@ function ProductDetail() {
                 </Row>
               </div>
               <h1 className='text_product_detail'>
-              ❗❗❗ 90 DAY PRODUCT WARRANTY
+                ❗❗❗ 90 DAY PRODUCT WARRANTY
               </h1>
               <h1 className='text_product_detail'>
-              ❗❗❗ EXCHANGE WITHIN 30 DAYS
+                ❗❗❗ EXCHANGE WITHIN 30 DAYS
               </h1>
               <h1 className='text_product_detail' style={{ marginBottom: "0" }}>
-              ❗❗❗ HOTLINE BÁN HÀNG 1900 633 501
+                ❗❗❗ HOTLINE BÁN HÀNG 1900 633 501
               </h1>
             </Col>
           </Row>

@@ -4,33 +4,26 @@ import { logIn } from "../../redux/actions/accountAction";
 import Success from "../notification/Success";
 import Error from "../notification/Error";
 
+
+
 function Login() {
   const [nameOrEmail, setNameOrEmail] = useState("");
   const [password, setPassword] = useState("");
-  // Biến này dùng để check case mà thằng singIn không thay đổi thì nó vẫn sẽ gọi
-  //thằng useEffect để reder ra message
-  const [statusSingIn, setStatusSingIn] = useState(false);
 
   const dispatch = useDispatch();
-  const singIn = useSelector((state) => state.accounts.singIn);
   const onChangeData = (event) => {
     event.target.name === "name"
-      ? setNameOrEmail(event.target.value)
-      : setPassword(event.target.value);
+    ? setNameOrEmail(event.target.value)
+    : setPassword(event.target.value);
   };
-
-  useEffect(() => {
-    setTimeout(() =>{
-      if (singIn === 1 || singIn === 0) {
-        return singIn === 1 ? Success("Sing In Success 😜😜😜") : Error("Your account information, password is incorrect 😭😭😭");
-      }
-    },[300])
-  }, [singIn || statusSingIn]);
   
   const onClickLogin = async (e) => {
     e.preventDefault();
     dispatch(logIn(nameOrEmail, password));
-    setStatusSingIn(!statusSingIn)
+    const {status} = JSON.parse(localStorage.getItem("statusLogin"));
+    setTimeout(() =>{
+        return status  ? Success("Sing In Success 😜😜😜") : Error("Your account information, password is incorrect 😭😭😭");
+    },[300]);
   };
 
   return (

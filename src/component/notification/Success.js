@@ -8,6 +8,7 @@ function Success(props) {
       });
       notification.success({
         description: value,
+        duration: 2
       });
   };
   return success(props);
