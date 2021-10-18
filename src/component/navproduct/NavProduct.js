@@ -25,6 +25,7 @@ function NavProduct() {
               style={{
                 width: "10rem",
               }}
+              className ="treeSelect"
             >
               <TreeNode className='tree_node' title='parent 1'></TreeNode>
             </TreeSelect>

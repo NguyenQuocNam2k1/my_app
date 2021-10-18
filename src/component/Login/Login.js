@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/actions/accountAction";
 import Success from "../notification/Success";
 import Error from "../notification/Error";

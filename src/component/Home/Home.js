@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Carousel, Pagination } from "antd";
 import slide1 from "../../image/slide1.jpg";
 import slide2 from "../../image/slide2.jpg";
@@ -64,7 +64,6 @@ function Home() {
             size='small'
             total={50}
             defaultPageSize='10'
-            size='large'
             style={{ textAlign: "center" }}
           />
         </div>

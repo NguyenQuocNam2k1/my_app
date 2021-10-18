@@ -5,8 +5,7 @@ import "./Header.css";
 import logo from "../../image/WOW_logo_white.png";
 import user from "../../icon/user.svg";
 import cart from "../../icon/cart.svg";
-import Search from "./Search";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 const { Header } = Layout;
 
 function HeaderPage() {

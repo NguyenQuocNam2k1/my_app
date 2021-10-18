@@ -2,7 +2,7 @@ import React from "react";
 import "./FooterPage.css";
 import { Row, Col } from "antd";
 
-function FooterPage(props) {
+function FooterPage() {
   return (
     <div className='FooterPage'>
       {/* <img src="https://storage.googleapis.com/cdn.nhanh.vn/store/7136/bn/sb_1570684484_63.jpg"  style={{maxWidth:"100%"}}/>
@@ -47,8 +47,6 @@ function FooterPage(props) {
           </div>
         </Col>
       </Row>
-      <Row></Row>
-      <Row></Row>
     </div>
   );
 }

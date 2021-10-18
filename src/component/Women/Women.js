@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Row, Col, Pagination, Breadcrumb } from "antd";
 import "../Home/Home.css";
@@ -90,7 +90,6 @@ function Women() {
         size='small'
         total={50}
         defaultPageSize='10'
-        size='large'
         style={{ textAlign: "center" }}
       />
     </>

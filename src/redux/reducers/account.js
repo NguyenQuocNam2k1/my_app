@@ -20,10 +20,11 @@ export const accountUser = (state = initialState, { type, payload }) => {
         if((name === account.userName || name === account.userEmail) && password === account.password){
           status_Login.idUser = account.id;
           status_Login.status = true;
-        } else{
+        } else if(!status_Login.status) {
           status_Login.status = false;
           delete status_Login["status"];
         }
+        if(status_Login.status) {return}
       });
       localStorage.setItem('statusLogin', JSON.stringify(status_Login));
       return { ...state};

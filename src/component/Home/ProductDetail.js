@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Col, Row } from "antd";
 import "./Home.css";
 import { useParams } from "react-router-dom";
@@ -16,12 +16,13 @@ import Success from "../notification/Success";
 
 function ProductDetail() {
   const { productId } = useParams();
-  const product = useSelector((state) => state.allProduct.product);
+  const product = useSelector((state) => (state.allProduct.product));
   const statusOrder = useSelector((state) => state.allProduct.statusAddOrder);
-
   const dispatch = useDispatch();
+  
+  
   useEffect(() => {
-    dispatch(getProduct(productId));
+    if(productId !== "") dispatch(getProduct(productId));
   }, [productId]);
 
   useEffect(() => {
@@ -56,7 +57,7 @@ function ProductDetail() {
       error("You need to login to make a purchase 😭");
     } else if (product.orderSize === undefined || product.orderSize === "") {
       Warning("Product size is not suitable ⚠️");
-    } else if (product.orderQuantity == undefined) {
+    } else if (product.orderQuantity === undefined) {
       product["orderQuantity"] = 1;
       dispatch(addOrder(product));
     } else {

@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { Col, Row } from "antd";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 function ListProduct() {
   const getAllProduct = useSelector((state) => state.allProduct.products);
-  const renderListProduct = getAllProduct.map((product) => {
+  const renderListProduct = getAllProduct.map((product , index) => {
     const { id, title, image, price } = product;
     let price_old = parseFloat(price).toFixed(2);
     let price_new = parseFloat(price - 0.2 * price).toFixed(2);
     let price_sale = (((price_old - price_new) / price_old) * 100).toFixed(0);
     return (
-      <Col span='6' id={id}>
+      <Col span='6' key={index}>
         <Link to={`/product/${id}`}>
           <div className='product_list'>
             <div className='product_list_child'>
@@ -50,7 +50,7 @@ function ListProduct() {
       </Col>
     );
   });
-  return ( <Row justify='center'>{renderListProduct}</Row> );
+  return ( <Row >{renderListProduct}</Row> );
 }
 
 export default ListProduct;

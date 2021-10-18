@@ -22,9 +22,6 @@ const { Footer, Content } = Layout;
 function HomePage() {
   const dispatch = useDispatch();
   const [windowHeight, setWindowHeight] = useState();
-  useEffect(() => {
-    setWindowHeight(window.screen.height / 2);
-  }, [window.screen.height]);
   
   const style = {
     height: "4rem",
@@ -38,6 +35,7 @@ function HomePage() {
 
   useEffect(() => {
     dispatch(getAllProduct());
+    setWindowHeight(window.screen.height / 2);
   }, []);
   const products = useSelector((state) => state.allProduct.products);
   return (

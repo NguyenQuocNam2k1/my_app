@@ -82,7 +82,7 @@ function Purchase() {
           <div className='totals-item'>
             <label>Subtotal</label>
             <div className='totals-value' id='cart-subtotal'>
-              {totalPrice}
+              {totalPrice.toFixed(2)}
             </div>
           </div>
           <div className='totals-item'>
@@ -104,7 +104,7 @@ function Purchase() {
               id='cart-total'
               style={{ fontSize: "1.8rem" }}
             >
-              {parseFloat(totalPrice * 0.09 + totalPrice).toFixed(2)}
+              {parseFloat((totalPrice * 1.09)).toFixed(2)}
             </div>
           </div>
         </div>
