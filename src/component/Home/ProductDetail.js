@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Col, Row } from "antd";
 import "./Home.css";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getProduct,
@@ -16,33 +16,29 @@ import Success from "../notification/Success";
 
 function ProductDetail() {
   const { productId } = useParams();
-  const product = useSelector((state) => (state.allProduct.product));
+  const product = useSelector((state) => state.allProduct.product);
   const statusOrder = useSelector((state) => state.allProduct.statusAddOrder);
   const dispatch = useDispatch();
-  
-  
-  useEffect(() => {
-    if(productId !== "") dispatch(getProduct(productId));
-  }, [productId]);
+  const history = useHistory();
+
+  // useEffect(() => {
+  //   if(productId !== "") dispatch(getProduct(productId));
+  // }, [productId]);
 
   useEffect(() => {
-    if (statusOrder !== 0) {
+    if (statusOrder) {
       Success("Add order success ✔️");
       setTimeout(() => {
         dispatch(restartStatusOrder());
       }, [500]);
     }
-  }, [statusOrder !== 0 && statusOrder !== "undefined"]);
+    if (productId !== "") dispatch(getProduct(productId));
+  }, [statusOrder || productId]);
 
   const onChange = (value) => {
     product["orderQuantity"] = value;
   };
-  const showMessage = () => {
-    const {status} = JSON.parse(localStorage.getItem("statusLogin"));
-    if (!status) {
-      error("You need to login to make a purchase 😭");
-    }
-  };
+
   const onClickSize = (value) => {
     // console.log(value.textContent)
     // Cần có textContent bởi vì khi click vào button nó sẽ trả về 2 trường hợp 1 là trả về cả button , 2 là trả về nguyên thẻ p
@@ -50,22 +46,22 @@ function ProductDetail() {
     product["orderSize"] = value.textContent;
   };
 
-  const onClickAddOrder = () => {
-    const {status , idUser} = JSON.parse(localStorage.getItem("statusLogin"));
+  const onClickAddOrder = (value) => {
+    const { status, idUser } = JSON.parse(localStorage.getItem("statusLogin"));
     product["idUser"] = idUser;
+    // console.log(value.textContent);
     if (!status) {
       error("You need to login to make a purchase 😭");
     } else if (product.orderSize === undefined || product.orderSize === "") {
       Warning("Product size is not suitable ⚠️");
-    } else if (product.orderQuantity === undefined) {
-      product["orderQuantity"] = 1;
-      dispatch(addOrder(product));
     } else {
-      dispatch(addOrder(product ));
+      if (product.orderQuantity === undefined)  product["orderQuantity"] = 1;
+      if (value.textContent.trim() === "BUY NOW") history.push("/myCar");
+      dispatch(addOrder(product , value.textContent.trim()));
     }
-    setTimeout(()=>{
+    setTimeout(() => {
       product["orderSize"] = "";
-    }, 200)
+    }, 200);
   };
 
   return (
@@ -98,18 +94,21 @@ function ProductDetail() {
                   <Button
                     style={{ marginRight: "0.5rem" }}
                     onClick={(event) => onClickSize(event.target)}
-                    className="button_size"
+                    className='button_size'
                   >
                     <p style={{ color: "black", fontWeight: "500" }}>S</p>
                   </Button>
                   <Button
                     style={{ marginRight: "0.5rem" }}
                     onClick={(event) => onClickSize(event.target)}
-                    className="button_size"
+                    className='button_size'
                   >
                     <p style={{ color: "black", fontWeight: "500" }}>M</p>
                   </Button>
-                  <Button onClick={(event) => onClickSize(event.target)} className="button_size">
+                  <Button
+                    onClick={(event) => onClickSize(event.target)}
+                    className='button_size'
+                  >
                     <p style={{ color: "black", fontWeight: "500" }}>L</p>
                   </Button>
                 </Col>
@@ -129,7 +128,7 @@ function ProductDetail() {
                   <Col span='12'>
                     <button
                       className='button_purchase button_purchase_add'
-                      onClick={() => onClickAddOrder()}
+                      onClick={(event) => onClickAddOrder(event.target)}
                     >
                       ADD TO CART
                     </button>
@@ -137,7 +136,7 @@ function ProductDetail() {
                   <Col span='12'>
                     <button
                       className='button_purchase button_purchase_buy'
-                      onClick={() => showMessage()}
+                      onClick={(event) => onClickAddOrder(event.target)}
                     >
                       BUY NOW
                     </button>

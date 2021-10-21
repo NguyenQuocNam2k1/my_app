@@ -34,7 +34,7 @@ function Register() {
     useEffect(() => {
         setTimeout(() => {
             if(Register === 1){
-                return Register === 1 ? Success("Successful account registration 😜😜😜") : Error("Account registration failed 😭😭😭")
+                return Register === 1 ? Success("Successful account registration 😜") : Error("Account registration failed 😭")
             }
         }, [300]);
     }, [Register || statusRegister])

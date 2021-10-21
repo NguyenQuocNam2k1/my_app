@@ -28,14 +28,22 @@ export const accountUser = (state = initialState, { type, payload }) => {
       });
       localStorage.setItem('statusLogin', JSON.stringify(status_Login));
       return { ...state};
+
     case AccountTypes.REGISTER_ACCOUNT:
       state.account = JSON.parse(localStorage.getItem('usersAccount'));
       state.account.push(payload);
       state.account[state.account.length - 1].id = state.account.length;
       localStorage.setItem('usersAccount', JSON.stringify(state.account));
       return{...state , StatusRegister: 1}
+
     case AccountTypes.RESTART_STATUS:
       return{...state , singIn: 2 , StatusRegister: 0}
+
+    case AccountTypes.LOG_OUT:
+      localStorage.setItem('statusLogin', JSON.stringify({status: false}));
+      localStorage.setItem('ordersClient', JSON.stringify([]));
+      return{...state}
+      
     default:
       return state;
   }

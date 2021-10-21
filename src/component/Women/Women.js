@@ -68,7 +68,7 @@ function Women() {
           <Breadcrumb.Item>Product</Breadcrumb.Item>
           <Breadcrumb.Item>Womens</Breadcrumb.Item>
         </Breadcrumb>
-        <h1 className='title_main'>Kids clothing</h1>
+        <h1 className='title_main'>Womens clothing</h1>
       </>
     );
   };

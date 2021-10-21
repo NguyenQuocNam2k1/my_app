@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Purchase.css";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { logOut } from "../../redux/actions/accountAction";
 import {
   delete_product_ordered,
   edit_quantity,
@@ -104,7 +106,7 @@ function Purchase() {
               id='cart-total'
               style={{ fontSize: "1.8rem" }}
             >
-              {parseFloat((totalPrice * 1.09)).toFixed(2)}
+              {parseFloat(totalPrice * 1.09).toFixed(2)}
             </div>
           </div>
         </div>
@@ -116,7 +118,7 @@ function Purchase() {
       {Object.keys(getProductForIdUser).length === 0 ? (
         <Nodata />
       ) : (
-        <Col style={{width:"90%" , margin:"auto"}}>
+        <Col style={{ width: "90%", margin: "auto" }}>
           <h1 className='title_purchase'>Shopping Cart</h1>
           <div className='shopping-cart'>
             <div className='column-labels'>
@@ -129,7 +131,11 @@ function Purchase() {
             </div>
             {productOrder}
             {totals()}
-            <button className='checkout'>Checkout</button>
+            <Link to='/'>
+              <button className='checkout' onClick={() => dispatch(logOut())}>
+                Checkout
+              </button>
+            </Link>
           </div>
         </Col>
       )}

@@ -13,5 +13,6 @@ export const ActionTypes = {
 export const AccountTypes = {
     LOG_IN:"LOG_IN",
     REGISTER_ACCOUNT:"REGISTER_ACCOUNT",
-    RESTART_STATUS: "RESTART_STATUS"
+    RESTART_STATUS: "RESTART_STATUS",
+    LOG_OUT:"LOG_OUT"
 }

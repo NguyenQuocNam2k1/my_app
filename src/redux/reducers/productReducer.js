@@ -5,7 +5,7 @@ const initialState = {
     layout: 4,
     product:{},
     orders:[],
-    statusAddOrder: 0,
+    statusAddOrder: false,
 }
 
 export const getAllProductReducer = (state = initialState, {type, payload}) =>{
@@ -21,12 +21,10 @@ export const getAllProductReducer = (state = initialState, {type, payload}) =>{
             return {...state , product:payload}
         case ActionTypes.ADD_ORDER:
             state.orders = JSON.parse(localStorage.getItem('ordersClient'));
-            state.orders.push(payload);
+            state.orders.push(payload.product);
             localStorage.setItem('ordersClient', JSON.stringify(state.orders));
-            if(payload){
+            if(payload.typeButton.trim() ==="ADD TO CART"){
                 state.statusAddOrder = true;
-            }else {
-                state.statusAddOrder = false;
             }
             return {...state};
         case ActionTypes.RESTART_STATUS_ORDER:

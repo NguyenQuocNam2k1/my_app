@@ -19,8 +19,8 @@ export const getProduct = (id) => async (dispatch) => {
   dispatch({ type: ActionTypes.GET_PRODUCT, payload: response.data });
 };
 
-export const addOrder =  (product) => async(dispatch) =>{
-  dispatch({type: ActionTypes.ADD_ORDER , payload:product})
+export const addOrder =  (product , button) => async(dispatch) =>{
+  dispatch({type: ActionTypes.ADD_ORDER , payload:{product:product , typeButton: button}})
 }
 export const restartStatusOrder =  () => async(dispatch) =>{
   dispatch({type: ActionTypes.RESTART_STATUS_ORDER})

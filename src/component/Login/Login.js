@@ -1,29 +1,32 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/actions/accountAction";
 import Success from "../notification/Success";
+import { useHistory } from "react-router-dom";
 import Error from "../notification/Error";
-
-
 
 function Login() {
   const [nameOrEmail, setNameOrEmail] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
 
   const dispatch = useDispatch();
   const onChangeData = (event) => {
     event.target.name === "name"
-    ? setNameOrEmail(event.target.value)
-    : setPassword(event.target.value);
+      ? setNameOrEmail(event.target.value)
+      : setPassword(event.target.value);
   };
+
   
   const onClickLogin = async (e) => {
     e.preventDefault();
     dispatch(logIn(nameOrEmail, password));
-    const {status} = JSON.parse(localStorage.getItem("statusLogin"));
-    setTimeout(() =>{
-        return status  ? Success("Sing In Success 😜😜😜") : Error("Your account information, password is incorrect 😭😭😭");
-    },[300]);
+    setTimeout(() => {
+      const { status } = JSON.parse(localStorage.getItem("statusLogin"));
+      return status
+        ? history.push("/")
+        : Error("Your account information, password is incorrect 😭😭😭");
+    }, [300]);
   };
 
   return (
