@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="./main.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./font/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+    <title>Document</title>
 </head>
-
 <body>
-  <section class="page_404">
-    <div class="four_zero_four_bg">
-      <h1 class="text-center ">404</h1>
+  <div class="chooseItem">
+    <input class="chooseItem-parents" type="text" placeholder="  Chọn loai san pham" value="">
+    <div class="chooseItem-icon">
+      <i class="fas fa-chevron-circle-down"></i>
+      <ul class="chooseItem-list">
+        <li class="chooseItem-item">Đù má con cá</li>
+        <li class="chooseItem-item">Ảo ma Canada</li>
+        <li class="chooseItem-item">Vãi nồi chim én</li>
+      </ul>
     </div>
-    <div class="contant_box_404">
-      <h3 class="h2">
-        Look like you're lost
-      </h3>
-      <p>the page you are looking for not avaible!</p>
-      <a href="" class="link_404">Go to Home</a>
-    </div>
-  </section>
-  <script src="./main.js"></script>
-</body>
+  </div>
 
+  <script>
+    const listChoose = document.querySelectorAll('.chooseItem-list li.chooseItem-item');
+    var nodeInput = document.querySelector('.chooseItem input');
+    for (const itemChoose of listChoose) {
+      itemChoose.addEventListener('click', function() { 
+        var nodeInput = document.querySelector('.chooseItem input');
+        nodeInput.value = '  ' + itemChoose.textContent;
+      })
+    }
+      
+    
+  </script>
+
+</body>
 </html>

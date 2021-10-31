@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "antd";
 import "./Home.css";
 import { useParams, useHistory } from "react-router-dom";
@@ -9,13 +9,13 @@ import {
   restartStatusOrder,
 } from "../../redux/actions/productAction";
 import Loading from "../../container/loading/Loading";
-import { Button, InputNumber } from "antd";
+import { InputNumber } from "antd";
 import error from "../notification/Error";
-import Warning from "../notification/Warning";
 import Success from "../notification/Success";
 
 function ProductDetail() {
   const { productId } = useParams();
+  const [onClickSizeClass, setOnClickSizeClass] = useState("S");
   const product = useSelector((state) => state.allProduct.product);
   const statusOrder = useSelector((state) => state.allProduct.statusAddOrder);
   const dispatch = useDispatch();
@@ -44,6 +44,7 @@ function ProductDetail() {
     // Cần có textContent bởi vì khi click vào button nó sẽ trả về 2 trường hợp 1 là trả về cả button , 2 là trả về nguyên thẻ p
     // Nên cần có textContent để lấy string trong thẻ trả về
     product["orderSize"] = value.textContent;
+    setOnClickSizeClass(value.textContent);
   };
 
   const onClickAddOrder = (value) => {
@@ -52,12 +53,12 @@ function ProductDetail() {
     // console.log(value.textContent);
     if (!status) {
       error("You need to login to make a purchase 😭");
-    } else if (product.orderSize === undefined || product.orderSize === "") {
-      Warning("Product size is not suitable ⚠️");
     } else {
-      if (product.orderQuantity === undefined)  product["orderQuantity"] = 1;
+      if (product.orderSize === undefined || product.orderSize === "")
+        product["orderSize"] = "S";
+      if (product.orderQuantity === undefined) product["orderQuantity"] = 1;
       if (value.textContent.trim() === "BUY NOW") history.push("/myCar");
-      dispatch(addOrder(product , value.textContent.trim()));
+      dispatch(addOrder(product, value.textContent.trim()));
     }
     setTimeout(() => {
       product["orderSize"] = "";
@@ -91,26 +92,71 @@ function ProductDetail() {
               <Row className='quantity_size' justify='space-between'>
                 <Col>
                   <p className='text_quantity_size'>Select size</p>
-                  <Button
+                  <button
                     style={{ marginRight: "0.5rem" }}
                     onClick={(event) => onClickSize(event.target)}
-                    className='button_size'
+                    className={
+                      onClickSizeClass === "S"
+                        ? "button_size_click"
+                        : "button_size"
+                    }
                   >
-                    <p style={{ color: "black", fontWeight: "500" }}>S</p>
-                  </Button>
-                  <Button
+                    <p
+                      style={{
+                        fontWeight: "600",
+                        top: "0",
+                        right: "0",
+                        bottom: "0",
+                        left: "0",
+                        margin: "auto",
+                      }}
+                    >
+                      S
+                    </p>
+                  </button>
+                  <button
                     style={{ marginRight: "0.5rem" }}
                     onClick={(event) => onClickSize(event.target)}
-                    className='button_size'
+                    className={
+                      onClickSizeClass === "M"
+                        ? "button_size_click"
+                        : "button_size"
+                    }
                   >
-                    <p style={{ color: "black", fontWeight: "500" }}>M</p>
-                  </Button>
-                  <Button
+                    <p
+                      style={{
+                        fontWeight: "600",
+                        top: "0",
+                        right: "0",
+                        bottom: "0",
+                        left: "0",
+                        margin: "auto",
+                      }}
+                    >
+                      M
+                    </p>
+                  </button>
+                  <button
                     onClick={(event) => onClickSize(event.target)}
-                    className='button_size'
+                    className={
+                      onClickSizeClass === "L"
+                        ? "button_size_click"
+                        : "button_size"
+                    }
                   >
-                    <p style={{ color: "black", fontWeight: "500" }}>L</p>
-                  </Button>
+                    <p
+                      style={{
+                        fontWeight: "600",
+                        top: "0",
+                        right: "0",
+                        bottom: "0",
+                        left: "0",
+                        margin: "auto",
+                      }}
+                    >
+                      L
+                    </p>
+                  </button>
                 </Col>
                 <Col offset='9'>
                   <p className='text_quantity_size'>Quantity</p>

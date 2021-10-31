@@ -1,28 +1,50 @@
-.page_404{ padding:40px 0; background:#fff; font-family: 'Arvo', serif;
+body {
+  background-color: rgb(249 249 249);
+}
+.chooseItem {
+  position: relative;
+  width: 180px;
+
+}   
+
+.chooseItem-parents {
+  border: 1px solid #d7cccccc;
+  height: 32px;
+  outline: none;
+}
+  
+.chooseItem-icon {
+  position: absolute;
+  top: 1px;
+  right: 22px;
+  padding: 8px 8px 20px 16px;
+  cursor: pointer;
 }
 
-.page_404  img{ width:100%;}
+.chooseItem-icon:hover .chooseItem-item {
+  display: block;
+}
+  
+.chooseItem-list {
+  list-style: none;
+  position: absolute;
+  top: 19px;
+  right: -4px;
+  background-color: #fff;
+  padding-left: 0;
+}
+  
+.chooseItem-item {
+  width: 130px;
+  color: #333;
+  font-size: 16px;
+  padding: 6px 4px;
+  border-bottom: 1px solid #ded1d1;
+  padding-left: 10px;
+  cursor: pointer;
+  display: none;
+}
 
-.four_zero_four_bg{
- 
- background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
-    height: 400px;
-    background-position: center;
- }
- 
- 
- .four_zero_four_bg h1{
- font-size:80px;
- }
- 
-  .four_zero_four_bg h3{
-       font-size:80px;
-       }
-       
-       .link_404{      
-  color: #fff!important;
-    padding: 10px 20px;
-    background: #39ac31;
-    margin: 20px 0;
-    display: inline-block;}
-  .contant_box_404{ margin-top:-50px;}
+.chooseItem-item:hover {
+  background-color: rgba(153, 153, 153, 0.418);
+}

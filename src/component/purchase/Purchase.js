@@ -1,17 +1,50 @@
 import React, { useState, useEffect } from "react";
 import "./Purchase.css";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { logOut } from "../../redux/actions/accountAction";
+import { Link , useHistory } from "react-router-dom";
 import {
   delete_product_ordered,
   edit_quantity,
 } from "../../redux/actions/productAction";
-import { Row, Col } from "antd";
+import { Row, Col, Modal , message } from "antd";
 import Nodata from "../../container/loading/Nodata";
+import {analyticProducts} from "../../redux/actions/adminAction";
+
 
 function Purchase() {
   const [deleteOnlick, setDeleteOnlick] = useState(false);
+  const history = useHistory();
+
+  // Đoạn này xử lý modal thanh toán
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [cartNumber , setCartNumber] = useState("");
+  const [placeShipment , setPlaceShipment] = useState("");
+
+  const onChangeGetInfoPayment = (e)=>{
+    if(e.name === "cartNumber"){
+      setCartNumber(e.value);
+    }else if(e.name === "placeShipment"){
+      setPlaceShipment(e.value);
+    }
+  }
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+  const handleOk = () => {
+    if(cartNumber !== "" && placeShipment !== ""){
+      history.push("/paymentSuccess");
+      setIsModalVisible(false);
+      dispatch(analyticProducts());
+    }else {
+      message.warning('You need to fill in the information from!');
+    }
+  };
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+
+  // Xử lý xóa sản phẩm khi đã thêm vào cart
   const dispatch = useDispatch();
   const deleteProductOrdered = (id) => {
     dispatch(delete_product_ordered(id));
@@ -25,21 +58,17 @@ function Purchase() {
     }
   };
 
+
   let listOrder = JSON.parse(localStorage.getItem("ordersClient"));
   let idUser = JSON.parse(localStorage.getItem("statusLogin")).idUser;
-  let getProductForIdUser = [];
+  let infoUser = JSON.parse(localStorage.getItem("usersAccount"))[idUser-1];
   useEffect(() => {
     listOrder = JSON.parse(localStorage.getItem("ordersClient"));
     idUser = JSON.parse(localStorage.getItem("statusLogin"));
   }, [deleteOnlick]);
 
   var totalPrice = 0; //Biến giúp tính tổng tiền qua từng lần lặp
-  listOrder.map((value) => {
-    if (value.idUser === idUser) {
-      getProductForIdUser.push(value);
-    }
-  });
-  const productOrder = getProductForIdUser.map((value, idex) => {
+  const productOrder = listOrder.map((value, idex) => {
     const { title, description, image, orderQuantity, price } = value;
     totalPrice += orderQuantity * parseFloat(price - 0.2 * price).toFixed(2);
     return (
@@ -113,9 +142,10 @@ function Purchase() {
       </>
     );
   };
+
   return (
     <Row justify='center' style={{ marginTop: "3rem" }}>
-      {Object.keys(getProductForIdUser).length === 0 ? (
+      {Object.keys(listOrder).length === 0 ? (
         <Nodata />
       ) : (
         <Col style={{ width: "90%", margin: "auto" }}>
@@ -129,12 +159,29 @@ function Purchase() {
               <label className='product-removal'>Remove</label>
               <label className='product-line-price'>Total</label>
             </div>
+
+            {/* Payment */}
+            <Modal
+              title='Payment'
+              visible={isModalVisible}
+              onOk={handleOk}
+              onCancel={handleCancel}
+            >
+              <label for="username" className="textInputPayment">Username</label><br/>
+              <input type="text" className="input_payment" value={infoUser.userName}/>
+              <label for="cart" className="textInputPayment">Nhập số thẻ ngân hàng</label><br/>
+              <input type="text" className="input_payment" name="cartNumber" placeholder="**********" onChange ={(event) => onChangeGetInfoPayment(event.target)}/>
+              <label for="email" className="textInputPayment">Email</label><br/>
+              <input type="text" className="input_payment" value={infoUser.userEmail} />
+              <label for="place" className="textInputPayment">Địa chỉ</label><br/>
+              <input type="text" className="input_payment" name="placeShipment" placeholder="Ngách 52 Ngõ Trại Cá , Phương Trương Định , Quận Hai Bà Trưng , Hà Nội" onChange ={(event) => onChangeGetInfoPayment(event.target)} />
+            </Modal>
+
             {productOrder}
             {totals()}
+            <button className='checkout' onClick={showModal}>Tiến hành thanh toán</button>
             <Link to='/'>
-              <button className='checkout' onClick={() => dispatch(logOut())}>
-                Checkout
-              </button>
+            <button className='return'>Tiếp tục mua hàng</button>
             </Link>
           </div>
         </Col>

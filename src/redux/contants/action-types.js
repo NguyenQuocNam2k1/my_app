@@ -16,3 +16,7 @@ export const AccountTypes = {
     RESTART_STATUS: "RESTART_STATUS",
     LOG_OUT:"LOG_OUT"
 }
+
+export const AdminTypes = {
+    ANALYTIC_PRODUCTS : "ANALYTIC_PRODUCTS"
+}

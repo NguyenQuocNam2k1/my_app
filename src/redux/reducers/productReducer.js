@@ -9,7 +9,7 @@ const initialState = {
 }
 
 export const getAllProductReducer = (state = initialState, {type, payload}) =>{
-    // localStorage.setItem('ordersClient', JSON.stringify(state.orders));
+    // localStorage.setItem('AnalyticProduct', JSON.stringify([]));
     switch(type){
         case ActionTypes.GET_ALL_PRODUCTS:
             return{...state , products: payload}
@@ -31,6 +31,7 @@ export const getAllProductReducer = (state = initialState, {type, payload}) =>{
             return {...state , statusAddOrder:0}
         case ActionTypes.DELETE_PRODUCT_ORDERED:
             state.orders = JSON.parse(localStorage.getItem('ordersClient'));
+            // let analyticProducts = SON.parse(localStorage.getItem('ordersClient'));
             state.orders.splice(payload,1);
             localStorage.setItem('ordersClient', JSON.stringify(state.orders));
             return {...state}

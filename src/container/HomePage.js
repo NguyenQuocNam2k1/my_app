@@ -15,7 +15,8 @@ import Women from "../component/Women/Women";
 import ProductDetail from "../component/Home/ProductDetail";
 import IndexLogin from "../component/Login/Index";
 import Purchase from "../component/purchase/Purchase";
-
+import Admin from "../component/Admin/Index.js";
+import ResultSuccess from "./ResultSuccess";
 
 const { Footer, Content } = Layout;
 
@@ -60,6 +61,8 @@ function HomePage() {
                 <Route path="/logIn" component={IndexLogin} />
                 <Route path="/myCar" component={Purchase} />
                 <Route path="/product/:productId" component={ProductDetail} />
+                <Route path="/admin" component={Admin} />
+                <Route path="/paymentSuccess" component={ResultSuccess}/>
                 <Route>
                   <NotFound />
                 </Route>

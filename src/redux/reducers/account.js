@@ -41,7 +41,7 @@ export const accountUser = (state = initialState, { type, payload }) => {
 
     case AccountTypes.LOG_OUT:
       localStorage.setItem('statusLogin', JSON.stringify({status: false}));
-      localStorage.setItem('ordersClient', JSON.stringify([]));
+      localStorage.setItem("ordersClient" , JSON.stringify([]));
       return{...state}
       
     default:
