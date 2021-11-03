@@ -61,10 +61,10 @@ function Purchase() {
 
   let listOrder = JSON.parse(localStorage.getItem("ordersClient"));
   let idUser = JSON.parse(localStorage.getItem("statusLogin")).idUser;
-  let infoUser = JSON.parse(localStorage.getItem("usersAccount"))[idUser-1];
+  let infoUser = idUser !== "undefine" ? JSON.parse(localStorage.getItem("usersAccount"))[idUser-1] :"NoData";
   useEffect(() => {
     listOrder = JSON.parse(localStorage.getItem("ordersClient"));
-    idUser = JSON.parse(localStorage.getItem("statusLogin"));
+    infoUser = idUser !== "undefine" ? JSON.parse(localStorage.getItem("usersAccount"))[idUser-1] :"NoData";
   }, [deleteOnlick]);
 
   var totalPrice = 0; //Biến giúp tính tổng tiền qua từng lần lặp
@@ -72,7 +72,7 @@ function Purchase() {
     const { title, description, image, orderQuantity, price } = value;
     totalPrice += orderQuantity * parseFloat(price - 0.2 * price).toFixed(2);
     return (
-      <div className='product' style={{ padding: "0 0 10px 0" }} key={idex}>
+      <div className='product' style={{ padding: "0 0 10px 0" , marginBottom:"3rem" }} key={idex}>
         <div className='product-image'>
           <img src={image} alt='image_product' />
         </div>
@@ -168,11 +168,11 @@ function Purchase() {
               onCancel={handleCancel}
             >
               <label for="username" className="textInputPayment">Username</label><br/>
-              <input type="text" className="input_payment" value={infoUser.userName}/>
+              <input type="text" className="input_payment" value={infoUser !== "NoData" ? infoUser.userName : ""}/>
               <label for="cart" className="textInputPayment">Nhập số thẻ ngân hàng</label><br/>
               <input type="text" className="input_payment" name="cartNumber" placeholder="**********" onChange ={(event) => onChangeGetInfoPayment(event.target)}/>
               <label for="email" className="textInputPayment">Email</label><br/>
-              <input type="text" className="input_payment" value={infoUser.userEmail} />
+              <input type="text" className="input_payment" value={infoUser !== "NoData" ? infoUser.userEmail : ""} />
               <label for="place" className="textInputPayment">Địa chỉ</label><br/>
               <input type="text" className="input_payment" name="placeShipment" placeholder="Ngách 52 Ngõ Trại Cá , Phương Trương Định , Quận Hai Bà Trưng , Hà Nội" onChange ={(event) => onChangeGetInfoPayment(event.target)} />
             </Modal>

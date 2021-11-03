@@ -1,16 +1,22 @@
 import React from "react";
 import { Result, Button } from "antd";
-import { Link , useHistory } from "react-router-dom";
-import {logOut} from "../redux/actions/accountAction";
+import { Link, useHistory } from "react-router-dom";
+import { logOut } from "../redux/actions/accountAction";
 import { useDispatch } from "react-redux";
 
 function ResultSuccess() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const onClickLogOut = () =>{
-    dispatch(logOut());
-    history.push("/logIn");
-  }
+  const onClickLogOut = (name) => {
+    // console.log(name.textContent);
+    if (name.textContent === "Go Back Home") {
+      localStorage.setItem("ordersClient", JSON.stringify([]));
+      history.push("/");
+    } else if (name.textContent === "Log Out") {
+      dispatch(logOut());
+      history.push("/logIn");
+    }
+  };
   return (
     <>
       <Result
@@ -19,12 +25,23 @@ function ResultSuccess() {
         subTitle='Cảm ơn bạn đã mua hàng tại WOW . Rất vui khi được phục vụ 👙'
         style={{ fontWeight: "700" }}
         extra={[
-          <Link to='/'>
-            <Button type='primary' key='console'>
-              Go Back Home
-            </Button>
-          </Link>,
-          <Button key='buy' onClick={()=>onClickLogOut()}>Log Out</Button>,
+          <Button
+            type='primary'
+            name='Return'
+            key='console'
+            onClick={(e) => onClickLogOut(e.target)}
+            style={{marginBottom: "3rem"}}
+          >
+            Go Back Home
+          </Button>,
+          <Button
+            key='buy'
+            name='log_out'
+            onClick={(e) => onClickLogOut(e.target)}
+            style={{marginBottom: "3rem"}}
+          >
+            Log Out
+          </Button>,
         ]}
       />
     </>

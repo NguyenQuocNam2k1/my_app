@@ -11,7 +11,7 @@ import ListProduct from "./ListProduct";
 
 function Home() {
   return (
-    <div className='slide_home'>
+    <div className='slide_home' style={{marginBottom: "3rem"}}>
       <Carousel autoplay effect='fade'>
         <div>
           <img alt='logo_slide' src={slide2} className='image_slide' />

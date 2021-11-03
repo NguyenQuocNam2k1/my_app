@@ -98,7 +98,7 @@ function Women() {
         size='small'
         total={getAllProduct.length}
         defaultPageSize='10'
-        style={{ textAlign: "center" }}
+        style={{ textAlign: "center" ,marginBottom: "3rem" }}
         onChange={(page, pageSize) => ClickPageSizeNow(page, pageSize)}
       />
     </>

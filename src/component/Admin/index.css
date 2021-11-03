@@ -1,7 +1,106 @@
-.boxTotal{
-
+.boxTotal {
+  width: 100%;
+  height: 10rem;
+}
+.boxTotalBill{
+  background-color: rgb(23,162,184);
+}
+.boxTotalProduct{
+  background-color: rgb(40,167,69);
+}
+.boxTotalUser{
+  background-color: rgb(255,193,7);
 }
 
-.TotalText{
-    
+.TotalNumber {
+  color: white;
+  font-size: 3rem;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 0;
+}
+.TotalText {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-align: center;
+  margin-bottom: 0;
+}
+/* .TotalUserText{
+    margin-bottom: 1.5rem;
+} */
+/* .textTableAdmin{
+  background-color: white;
+} */
+.textTableAdmin:hover {
+  cursor: pointer;
+}
+.tableAdmin {
+  /* background-color: white; */
+  margin-top: 5rem;
+}
+.nameTableAdmin {
+  font-size: 2.2rem;
+  font-family: initial;
+  font-weight: 900;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.buttonTableAdmin {
+  font-weight: 800;
+  background-color: white;
+  border-radius: 6px;
+  height: 2rem;
+}
+.buttonTableAdminUpdate {
+  color: rgb(33, 139, 90);
+  border: 1px solid rgb(33, 139, 90);
+}
+.buttonTableAdminUpdate:hover {
+  background-color: rgb(33, 139, 90);
+  color: white;
+  cursor: pointer;
+}
+.buttonTableAdminDelete {
+  color: rgb(220, 53, 69);
+  border: 1px solid rgb(220, 53, 69);
+}
+.buttonTableAdminDelete:hover {
+  background-color: rgb(220, 53, 69);
+  color: white;
+  cursor: pointer;
+}
+
+/* Table User */
+.textInputPayment {
+  font-size: 1rem;
+  color: black;
+}
+.input_payment {
+  border: 1px solid black;
+  width: 100%;
+  height: 2.2rem;
+  margin-top: 0.6rem;
+  margin-bottom: 1rem;
+}
+.textRating {
+  font-size: 1rem;
+  align-items: center;
+}
+.textRatingRate {
+  border-bottom: 1px solid cornflowerblue;
+  padding-bottom: 1rem;
+  color: "red";
+}
+
+/* Chart */
+.title_chart {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 1.6rem;
+  font-size: 1rem;
+  font-family: initial;
+  font-weight: 700;
+  padding-top: 2rem;
 }

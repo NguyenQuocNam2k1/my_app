@@ -52,7 +52,7 @@ function HomePage() {
               </div>
             </BackTop>
             <HeaderPage className='headerPage' />
-            <Content style={{ paddingBottom: "3rem" , minHeight:windowHeight}}>
+            <Content style={{minHeight:windowHeight}}>
               <Switch>
                 <Route path='/' exact component={Home} />
                 <Route path="/men"  component={Men} />
@@ -68,7 +68,7 @@ function HomePage() {
                 </Route>
               </Switch>
             </Content>
-            <Footer style={{ backgroundColor: "#000" }}>
+            <Footer style={{ backgroundColor: "#000"}}>
               <FooterPage />
             </Footer>
           </Layout>

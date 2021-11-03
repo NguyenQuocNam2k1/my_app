@@ -10,7 +10,6 @@ export const logIn = (userName, password) => async(dispatch) =>{
 }
 
 export const logOut = () => async(dispatch) =>{
-  console.log("logout");
   dispatch({type: AccountTypes.LOG_OUT})
 }
 

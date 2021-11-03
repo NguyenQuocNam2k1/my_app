@@ -62,7 +62,7 @@ function Men() {
               </div>
             </Link>
           </Col>
-          <Col span={changeLayout === 4 ? "0" : "2"}></Col>
+          <Col span={changeLayout === 4 ? "0" : "2"} style={{marginBottom: "3rem"}}></Col>
         </>
       );
     }

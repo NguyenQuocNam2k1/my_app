@@ -19,7 +19,7 @@ function Index() {
     dispatch(restartStatus());
   };
   const showFrom = () =>{
-    return (colorTextChild ? <Login /> : <Register />)
+    return (colorTextChild ? <Login style={{marginBottom: "3rem"}} /> : <Register style={{marginBottom: "3rem"}} />)
   }
   return (
     <>

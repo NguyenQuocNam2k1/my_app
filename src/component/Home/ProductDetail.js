@@ -74,7 +74,7 @@ function ProductDetail() {
           <Row justify='center'>
             <h1 className='title_main_product_detail'>Product detail</h1>
           </Row>
-          <Row justify='center'>
+          <Row justify='center' style={{marginBottom: "3rem"}}>
             <Col span='6' offset='1'>
               <div>
                 <img
