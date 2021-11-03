@@ -1,182 +1,107 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Row, Col } from "antd";
-import TableProduct from "./TableProduct";
-import TableUser from "./TableUser";
+import { Row, Col, Breadcrumb, Menu } from "antd";
 import ChartProduct from "./ChartProduct";
 import ChartUser from "./ChartUser";
-import {Link} from "react-router-dom";
-import {
-  AreaChart,
-  Area,
-  ResponsiveContainer,
-  LineChart,
-  BarChart,
-  Bar,
-  Line,
-} from "recharts";
+import { Link } from "react-router-dom";
 import "./index.css";
 
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
 function Index() {
   const getAllProduct = useSelector((state) => state.allProduct.products);
   const getAllUser = JSON.parse(localStorage.getItem("usersAccount"));
   const getTotalBill = JSON.parse(localStorage.getItem("totalBill"));
-  const TotalUser = () => {
+  const analyticProduct = JSON.parse(localStorage.getItem("AnalyticProduct"));
+  let totalRevenue = 0;
+  analyticProduct.forEach((value) => {
+    totalRevenue = totalRevenue + (value.price * value.orderQuantity);
+  });
+  const TotalUser = (data, background , name , srcImage , backgroundText) => {
+    //user <img src="https://img.icons8.com/material-outlined/96/000000/add-user-male.png"/>
+    //Bill <img src="https://img.icons8.com/ios-filled/100/000000/bill.png"/>
+    //Tong tien <img src="https://img.icons8.com/ios-filled/50/000000/total-sales-1.png"/>
+    let urlImage = `https://img.icons8.com/${srcImage}`
     return (
-      <div className='boxTotal boxTotalUser' style={{marginBottom: "3rem"}}>
-        <h3 className='TotalText TotalUserText'>Total User</h3>
-        <h1 className='TotalNumber'>{getAllUser.length}</h1>
-        <ResponsiveContainer width='100%' height='40%'>
-          <AreaChart
-            width={200}
-            height={60}
-            data={data}
-            margin={{
-              top: 0,
-              right: 0,
-              left: 0,
-              bottom: 4,
-            }}
-          >
-            <Area
-              type='monotone'
-              dataKey='uv'
-              stroke='#8884d8'
-              fill='#8884d8'
-            />
-          </AreaChart>
-        </ResponsiveContainer>
-      </div>
-    );
-  };
-  const TotalProduct = () => {
-    return (
-      <div className='boxTotal boxTotalProduct' >
-        <h3 className='TotalText'>Total Product</h3>
-        <h1 className='TotalNumber'>{getAllProduct.length}</h1>
-        <ResponsiveContainer width='100%' height='40%'>
-          <LineChart width={300} height={100} data={data}>
-            <Line
-              type='monotone'
-              dataKey='pv'
-              stroke='#8884d8'
-              strokeWidth={2}
-            />
-          </LineChart>
-        </ResponsiveContainer>
+      <div
+        style={{
+          marginBottom: "3rem",
+          backgroundColor: background,
+        }}
+        className="boxTotalParent"
+      >
+        <div className='boxTotal'>
+          <div style={{marginBottom:"0" , paddingBottom:"0"}}>
+            <h1 className='TotalNumber'>{data}</h1>
+            <h3 className='TotalText TotalUserText'>{name}</h3>
+          </div>
+          <div style={{marginBottom:"0", paddingBottom:"0"}}>
+            <img src={urlImage} alt="logo_box" className="image_box_admin"/>
+          </div>
+        </div>
+        <div className="text_more_parent" style={{backgroundColor:backgroundText}} >
+          <p className="text_more">More info</p>
+        </div>
       </div>
     );
   };
 
-  const TotalBill = () => {
-    return (
-      <div className='boxTotal boxTotalBill'>
-        <h3 className='TotalText'>Total Bill</h3>
-        <h1 className='TotalNumber'>{getTotalBill}</h1>
-        <ResponsiveContainer width='100%' height='40%'>
-          <BarChart
-            // width={10}
-            // height={10}
-            data={data}
-            margin={{
-              top: 0,
-              right: 0,
-              left: 0,
-              bottom: 4,
-            }}
-          >
-            <Bar dataKey='uv' fill='#8884d8' />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
-    );
-  };
+  const menu = (
+    <Menu>
+      <Menu.Item>
+        <Link to='/adminTableUser'>User</Link>
+      </Menu.Item>
+      <Menu.Item>
+        <Link to='/adminTableProduct'>Product</Link>
+      </Menu.Item>
+    </Menu>
+  );
+
   return (
-    <div style={{backgroundColor:"rgb(244,246,249)"}}>
-      <Row>
-      <Col span='2'></Col>
-      <Col span='20'>
-        
-      </Col>
-      <Col span='2'></Col>
+    <div style={{ backgroundColor: "rgb(244,246,249)", paddingBottom: "3rem" }}>
+      <Row style={{ marginBottom: "2rem", paddingTop: "2rem" }}>
+        <Col span='2'></Col>
+        <Col span='20'>
+          <Breadcrumb>
+            <Breadcrumb.Item>
+              <Link
+                to='/admin'
+                style={{
+                  fontSize: "1rem",
+                  fontWeight: "700",
+                  fontFamily: "inherit",
+                  color: "black",
+                }}
+              >
+                Dashboard
+              </Link>
+            </Breadcrumb.Item>
+            <Breadcrumb.Item
+              overlay={menu}
+              className='text_header_admin text_header_admin_table'
+            >
+              Table
+            </Breadcrumb.Item>
+          </Breadcrumb>
+        </Col>
+        <Col span='2'></Col>
       </Row>
-      <Row>
-        <Col span='2'></Col>
-        <Col span='6'>{TotalUser()}</Col>
+      <Row justify='space-between'>
         <Col span='1'></Col>
-        <Col span='6'>{TotalProduct()}</Col>
+        <Col span='5'>{TotalUser(getAllUser.length, "rgb(220,53,69)" , "Total User","material-outlined/96/000000/add-user-male.png" ,"rgb(198,48,62)")}</Col>
+        <Col span='5'>{TotalUser(getAllProduct.length, "rgb(23,162,184)" , "Total Product","ios/100/000000/bag-front-view.png" , "rgb(21,145,165)")}</Col>
+        <Col span='5'>{TotalUser(getTotalBill, "rgb(40,167,69)" ,"Total Bill","ios-filled/100/000000/bill.png" ,"rgb(36,150,62)")}</Col>
+        <Col span='5'>{TotalUser(`${totalRevenue}$`, "rgb(255,193,7)" , "Total Revenue","ios-filled/50/000000/total-sales-1.png" , "rgb(229,173,6)")}</Col>
         <Col span='1'></Col>
-        <Col span='6'>{TotalBill()}</Col>
-        <Col span='2'></Col>
       </Row>
-      <Row>
-        <Col span='2'></Col>
-        <Col span='9'>
+      <Row justify='space-between'>
+        <Col span='1'></Col>
+        <Col span='10'>
           <ChartProduct style={{ left: "0" }} />
         </Col>
-        <Col span='2'></Col>
-        <Col span='9'>
+        {/* <Col span='1'></Col> */}
+        <Col span='10'>
           <ChartUser />
         </Col>
-        <Col span='2'></Col>
-      </Row>
-      <Row>
-        <Col span={2}></Col>
-        <Col span={20}>
-        <TableUser />
-        </Col>
-        <Col span={2}></Col>
-      </Row>
-      <Row>
-        <Col span={2}></Col>
-        <Col span={20}>
-        <TableProduct />
-        </Col>
-        <Col span={2}></Col>
+        <Col span='1'></Col>
       </Row>
     </div>
   );

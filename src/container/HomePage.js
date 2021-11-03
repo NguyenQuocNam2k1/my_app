@@ -17,6 +17,9 @@ import IndexLogin from "../component/Login/Index";
 import Purchase from "../component/purchase/Purchase";
 import Admin from "../component/Admin/Index.js";
 import ResultSuccess from "./ResultSuccess";
+import TableProduct from "../component/Admin/TableProduct";
+import TableUser from "../component/Admin/TableUser";
+
 
 const { Footer, Content } = Layout;
 
@@ -63,6 +66,8 @@ function HomePage() {
                 <Route path="/product/:productId" component={ProductDetail} />
                 <Route path="/admin" component={Admin} />
                 <Route path="/paymentSuccess" component={ResultSuccess}/>
+                <Route path="/adminTableUser" component={TableUser}/>
+                <Route path="/adminTableProduct" component={TableProduct}/>
                 <Route>
                   <NotFound />
                 </Route>

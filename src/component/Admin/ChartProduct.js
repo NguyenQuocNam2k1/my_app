@@ -33,8 +33,8 @@ function ChartProduct() {
     <div style={{backgroundColor:"white"}}>
     <p className="title_chart">Biểu đồ thống kê số lượng bán của sản phẩm</p>
     <ComposedChart
-      width={450}
-      height={400}
+      width={500}
+      height={450}
       data={data}
       margin={{
         top: 0,
@@ -49,7 +49,6 @@ function ChartProduct() {
       <Tooltip />
       <Legend />
       <Bar dataKey="product" barSize={20} fill="#413ea0" />
-      <Line type="monotone" dataKey="product" stroke="rgb(255,127,14)" />
     </ComposedChart>
     </div>
   );

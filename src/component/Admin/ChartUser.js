@@ -33,8 +33,8 @@ function ChartUser() {
     <div style={{backgroundColor:"white" }}>
     <p className="title_chart">Biểu đồ thống kê số lượng mua của người dùng</p>
     <ComposedChart
-      width={450}
-      height={400}
+      width={500}
+      height={450}
       data={data}
       margin={{
         top: 0,
@@ -49,7 +49,6 @@ function ChartUser() {
       <Tooltip />
       <Legend />
       <Bar dataKey="count" barSize={20} fill="#413ea0" />
-      <Line type="monotone" dataKey="count" stroke="rgb(255,127,14)" />
     </ComposedChart>
     </div>
   );
