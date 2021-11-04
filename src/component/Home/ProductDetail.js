@@ -54,10 +54,13 @@ function ProductDetail() {
     if (!status) {
       error("You need to login to make a purchase 😭");
     } else {
-      if (product.orderSize === undefined || product.orderSize === "")
-        product["orderSize"] = "S";
+      if (product.orderSize === undefined || product.orderSize === ""){
+
+          product["orderSize"] = "S";
+    }
       if (product.orderQuantity === undefined) product["orderQuantity"] = 1;
       if (value.textContent.trim() === "BUY NOW") history.push("/myCar");
+      console.log(product)
       dispatch(addOrder(product, value.textContent.trim()));
     }
     setTimeout(() => {

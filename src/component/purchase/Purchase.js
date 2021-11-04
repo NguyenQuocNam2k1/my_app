@@ -148,7 +148,7 @@ function Purchase() {
       {Object.keys(listOrder).length === 0 ? (
         <Nodata />
       ) : (
-        <Col style={{ width: "90%", margin: "auto" }}>
+        <Col style={{ width: "90%", margin: "auto auto 3rem auto" }}>
           <h1 className='title_purchase'>Shopping Cart</h1>
           <div className='shopping-cart'>
             <div className='column-labels'>

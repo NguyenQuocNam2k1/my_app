@@ -9,7 +9,7 @@ const initialState = {
 }
 
 export const getAllProductReducer = (state = initialState, {type, payload}) =>{
-    localStorage.setItem('ordersClient', JSON.stringify([]));
+    // localStorage.setItem('ordersClient', JSON.stringify([]));
     switch(type){
         case ActionTypes.GET_ALL_PRODUCTS:
             return{...state , products: payload}

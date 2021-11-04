@@ -16,9 +16,6 @@ function Index() {
     totalRevenue = totalRevenue + (value.price * value.orderQuantity);
   });
   const TotalUser = (data, background , name , srcImage , backgroundText) => {
-    //user <img src="https://img.icons8.com/material-outlined/96/000000/add-user-male.png"/>
-    //Bill <img src="https://img.icons8.com/ios-filled/100/000000/bill.png"/>
-    //Tong tien <img src="https://img.icons8.com/ios-filled/50/000000/total-sales-1.png"/>
     let urlImage = `https://img.icons8.com/${srcImage}`
     return (
       <div
@@ -89,7 +86,7 @@ function Index() {
         <Col span='5'>{TotalUser(getAllUser.length, "rgb(220,53,69)" , "Total User","material-outlined/96/000000/add-user-male.png" ,"rgb(198,48,62)")}</Col>
         <Col span='5'>{TotalUser(getAllProduct.length, "rgb(23,162,184)" , "Total Product","ios/100/000000/bag-front-view.png" , "rgb(21,145,165)")}</Col>
         <Col span='5'>{TotalUser(getTotalBill, "rgb(40,167,69)" ,"Total Bill","ios-filled/100/000000/bill.png" ,"rgb(36,150,62)")}</Col>
-        <Col span='5'>{TotalUser(`${totalRevenue}$`, "rgb(255,193,7)" , "Total Revenue","ios-filled/50/000000/total-sales-1.png" , "rgb(229,173,6)")}</Col>
+        <Col span='5'>{TotalUser(`${totalRevenue.toFixed(2)}$`, "rgb(255,193,7)" , "Total Revenue","ios-filled/50/000000/total-sales-1.png" , "rgb(229,173,6)")}</Col>
         <Col span='1'></Col>
       </Row>
       <Row justify='space-between'>
@@ -97,7 +94,6 @@ function Index() {
         <Col span='10'>
           <ChartProduct style={{ left: "0" }} />
         </Col>
-        {/* <Col span='1'></Col> */}
         <Col span='10'>
           <ChartUser />
         </Col>
