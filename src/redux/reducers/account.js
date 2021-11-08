@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const accountUser = (state = initialState, { type, payload }) => {
-  // localStorage.setItem("usersAccount" , JSON.stringify(state.account))
+  // localStorage.setItem("usersAccount" , JSON.stringify([]))
   // localStorage.setItem("statusLogin" , JSON.stringify({}))
   switch (type) {
     case AccountTypes.LOG_IN:
@@ -16,16 +16,19 @@ export const accountUser = (state = initialState, { type, payload }) => {
       const password = payload.password;
       let usersAccount = JSON.parse(localStorage.getItem('usersAccount'));
       let status_Login = JSON.parse(localStorage.getItem("statusLogin"));
+      try {
       usersAccount.forEach((account) => {
         if((name === account.userName || name === account.userEmail) && password === account.password){
           status_Login.idUser = account.id;
           status_Login.status = true;
-        } else if(!status_Login.status) {
+          throw 'break-loop'
+        } else {
           status_Login.status = false;
           delete status_Login["status"];
         }
-        if(status_Login.status) {return}
-      });
+      })}catch (error) {
+        console.log(error);
+      }
       localStorage.setItem('statusLogin', JSON.stringify(status_Login));
       return { ...state};
 

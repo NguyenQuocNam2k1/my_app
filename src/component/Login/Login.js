@@ -20,6 +20,10 @@ function Login() {
   const onClickLogin = async (e) => {
     e.preventDefault();
     if (nameOrEmail === "Admin" && password === "Admin123") {
+      let status_Login = JSON.parse(localStorage.getItem("statusLogin"));
+      status_Login.status = false;
+      delete status_Login["status"];
+      localStorage.setItem("statusLogin", JSON.stringify(status_Login));
       history.push("/admin");
     } else if (nameOrEmail || password) {
       dispatch(logIn(nameOrEmail, password));

@@ -33,6 +33,7 @@ function ChartUser() {
     <div style={{backgroundColor:"white" }}>
     <p className="title_chart">Biểu đồ thống kê số lượng mua của người dùng</p>
     <ComposedChart
+    // 500
       width={500}
       height={450}
       data={data}

@@ -22,7 +22,7 @@ function ResultSuccess() {
       <Result
         status='success'
         title='THANH TOÁN THÀNH CÔNG ️🎉️🎉️🎉'
-        subTitle='Cảm ơn bạn đã mua hàng tại WOW . Rất vui khi được phục vụ 👙'
+        subTitle='Cảm ơn bạn đã mua hàng tại WOW . Rất vui khi được phục vụ 🤗'
         style={{ fontWeight: "700" }}
         extra={[
           <Button

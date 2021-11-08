@@ -27,8 +27,12 @@ function Register() {
     //         return regex.test(value) ? undefined :  message || 'Trường này phải là email';
     const onClickRegister = (e) =>{
         e.preventDefault();
-        dispatch(registerAccount(name , email , password));
-        setStatusRegister(!statusRegister)
+        if(name === "" || email === "" || password === "" ){
+            Error("Account registration failed 😭")
+        } else{
+            dispatch(registerAccount(name , email , password));
+            setStatusRegister(!statusRegister)
+        }
     }
 
     useEffect(() => {

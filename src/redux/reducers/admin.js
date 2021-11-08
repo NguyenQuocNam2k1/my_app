@@ -27,7 +27,6 @@ export const Admin = (state = initialState, {type, payload}) =>{
             }
             return {...state}
         case AdminTypes.DELETE_USER:
-            // console.log(payload)
             getAllUser.splice(payload-1 , 1);
             getAllUser.forEach((user, index) =>{
                 user.id = index+1;
